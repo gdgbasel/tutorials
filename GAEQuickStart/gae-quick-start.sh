@@ -43,10 +43,14 @@ mvn archetype:generate -DgroupId=com.gdgbasel.tuto -DartifactId="$1" -Dversion=1
 # Compiling
 cd "$1"
 mvn clean install
+mvn appengine:update
 
-echo ""
+echo "--------------------------------------"
+echo "--------------------------------------"
+
 end_time=`date +%s`
-echo execution time was `expr $end_time - $start_time` s.
-echo ""
+echo GAE setup and deployed in `expr $end_time - $start_time` s.
 
-mvn appengine:devserver </dev/null &>/dev/null &
+echo ""
+echo "--------------------------------------"
+echo "--------------------------------------"
