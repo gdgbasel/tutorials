@@ -57,7 +57,7 @@ mvn archetype:generate -DgroupId=com.gdgbasel.tuto -DartifactId="$gcpid" -Dversi
 printf "\n\n\n"
 printf "-----------------------------------------"
 printf "Press any key to compile : "
-
+read
 
 # Compiling
 cd "$gcpid"
@@ -66,6 +66,7 @@ mvn clean install
 printf "\n\n\n"
 printf "-----------------------------------------"
 printf "Press any key to deploy : 
+read
 
 mvn appengine:update
 
