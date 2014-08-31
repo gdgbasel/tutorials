@@ -22,9 +22,9 @@
 # Initiate start time
 start_time=`date +%s`
 
-printf "\n\n\n"
-printf "Installing Java..."
-printf "------------------"
+clear
+printf "Installing Java...\n"
+printf "__________________\n"
 printf "\n\n\n"
 
 # Install Java 1.7
@@ -35,9 +35,9 @@ sudo ls /opt/jdk
 sudo update-alternatives --install /usr/bin/java java /opt/jdk/jdk1.7.0_67/bin/java 100
 sudo update-alternatives --install /usr/bin/javac javac /opt/jdk/jdk1.7.0_67/bin/javac 100
 
-printf "\n\n\n"
-printf "Installing Maven..."
-printf "------------------"
+clear
+printf "Installing Maven...\n"
+printf "___________________\n"
 printf "\n\n\n"
 
 # Install Maven
@@ -47,35 +47,27 @@ sudo tar -zxf apache-maven-3.1.1-bin.tar.gz -C /opt/apps
 export M2_HOME=/opt/apps/apache-maven-3.1.1
 export PATH=/opt/apps/apache-maven-3.1.1/bin:${PATH}
 
+clear
+printf "Creating App Engine Project\n"
+printf "_____________________________________\n"
 printf "\n\n\n"
-printf "---------------------------------------"
 read -p "Input your Google Cloud Project ID: " gcpid
 
 # Creating Google App Engine Project
 mvn archetype:generate -DgroupId=com.gdgbasel.tuto -DartifactId="$gcpid" -Dversion=1.0-SNAPSHOT -DpackageName=com.gdgbasel.tuto -DarchetypeGroupId=com.google.appengine.archetypes -DarchetypeArtifactId=guestbook-archetype -DarchetypeVersion=1.8.4 -DinteractiveMode=false
 
-printf "\n\n\n"
-printf "-----------------------------------------"
-printf "Press any key to compile : "
-read -p gocompile
+clear
+read -p "Press any key to compile" gocompile
 
 # Compiling
 cd "$gcpid"
 mvn clean install
 
-printf "\n\n\n"
-printf "-----------------------------------------"
-printf "Press any key to deploy : 
-read -p godeploy
+clear
+read -p "Press any key to deploy" gocompile
 
 mvn appengine:update
 
-printf "--------------------------------------"
-printf "--------------------------------------"
-
+clear
 end_time=`date +%s`
-echo GAE setup and deployed in `expr $end_time - $start_time` s.
-
-printf ""
-printf "--------------------------------------"
-printf "--------------------------------------"
+printf "GAE setup and deployed in" `expr $end_time - $start_time` s.
