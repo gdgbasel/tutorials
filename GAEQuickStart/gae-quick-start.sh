@@ -22,6 +22,11 @@
 # Initiate start time
 start_time=`date +%s`
 
+echo "\n\n\n"
+echo "Installing Java..."
+echo "------------------"
+echo "\n\n\n"
+
 # Install Java 1.7
 wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/7u67-b01/jdk-7u67-linux-x64.tar.gz
 sudo mkdir -p /opt/jdk
@@ -30,6 +35,11 @@ sudo ls /opt/jdk
 sudo update-alternatives --install /usr/bin/java java /opt/jdk/jdk1.7.0_67/bin/java 100
 sudo update-alternatives --install /usr/bin/javac javac /opt/jdk/jdk1.7.0_67/bin/javac 100
 
+echo "\n\n\n"
+echo "Installing Maven..."
+echo "------------------"
+echo "\n\n\n"
+
 # Install Maven
 sudo mkdir -p /opt/apps/apache-maven-3.1.1
 wget http://apache.mirrors.timporter.net/maven/maven-3/3.1.1/binaries/apache-maven-3.1.1-bin.tar.gz
@@ -37,11 +47,19 @@ sudo tar -zxf apache-maven-3.1.1-bin.tar.gz -C /opt/apps
 export M2_HOME=/opt/apps/apache-maven-3.1.1
 export PATH=/opt/apps/apache-maven-3.1.1/bin:${PATH}
 
+echo "\n\n\n"
+echo "---------------------------------------"
+read -p "Input your Google Cloud Project ID: " gcpid
+
 # Creating Google App Engine Project
-mvn archetype:generate -DgroupId=com.gdgbasel.tuto -DartifactId="$1" -Dversion=1.0-SNAPSHOT -DpackageName=com.gdgbasel.tuto -DarchetypeGroupId=com.google.appengine.archetypes -DarchetypeArtifactId=guestbook-archetype -DarchetypeVersion=1.8.4 -DinteractiveMode=false
+mvn archetype:generate -DgroupId=com.gdgbasel.tuto -DartifactId="$gcpid" -Dversion=1.0-SNAPSHOT -DpackageName=com.gdgbasel.tuto -DarchetypeGroupId=com.google.appengine.archetypes -DarchetypeArtifactId=guestbook-archetype -DarchetypeVersion=1.8.4 -DinteractiveMode=false
+
+echo "\n\n\n"
+echo "-----------------------------------------"
+read -p "Press any key to compile and deploy : "
 
 # Compiling
-cd "$1"
+cd "$gcpid"
 mvn clean install
 mvn appengine:update
 
