@@ -22,7 +22,7 @@
 # Initiate start time
 start_time=`date +%s`
 
-# Install Java
+# Install Java 1.7
 wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/7u67-b01/jdk-7u67-linux-x64.tar.gz
 sudo mkdir -p /opt/jdk
 sudo tar -zxf jdk-7u67-linux-x64.tar.gz -C /opt/jdk
