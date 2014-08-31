@@ -19,9 +19,6 @@
 ## Date: 30/08/2014
 ## Version 1.0
 
-# Initiate start time
-start_time=`date +%s`
-
 clear
 printf "Installing Java...\n"
 printf "__________________\n"
@@ -68,6 +65,4 @@ read -p "Press any key to deploy" gocompile
 
 mvn appengine:update
 
-clear
-end_time=`date +%s`
-printf "GAE setup and deployed in" `expr $end_time - $start_time` s.
+printf "Apps Engine application has been deployed\n"
